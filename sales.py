@@ -22,12 +22,13 @@ df.sort_index(inplace=True)
 print("\nFirst 5 rows of merged DataFrame")
 print(df.head())
 
-# plot test
+# plots
+monthly_sales = df.resample('M')['Weekly_Sales'].sum()
 plt.figure(figsize=(15,7))
-df.groupby(df.index)['Weekly_Sales'].sum().plot
-plt.title('Overall Weekly Sales Trend')
+monthly_sales.plot()
+plt.title('Monthly Sales Trend')
 plt.xlabel('Date')
-plt.ylabel('Total Weekly Sales')
+plt.ylabel('Total Monthly Sales')
 plt.show()
 
 df['Month'] = df.index.month
@@ -39,6 +40,15 @@ plt.xlabel('Month')
 plt.ylabel('Avg Weekly Sales')
 plt.show()
 
+# check holiday szn
+holiday_sales = df.groupby('IsHoliday')['Weekly_Sales'].mean()
+plt.figure(figsize=(8, 5))
+sns.barplot(x=holiday_sales.index, y=holiday_sales.values)
+plt.title('Average Weekly Sales: Holiday vs. Non-Holiday')
+plt.xticks(ticks=[0, 1], labels=['Non-Holiday', 'Holiday'])
+plt.xlabel('Is Holiday?')
+plt.ylabel('Average Weekly Sales')
+plt.show()
 
 
 
