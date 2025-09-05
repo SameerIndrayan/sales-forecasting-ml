@@ -94,4 +94,3 @@ plt.ylabel('Total Sales Amount (INR)')
 plt.legend()
 plt.show()
 
-print("\nProject complete. This script demonstrates data cleaning, EDA, and basic forecasting.")
