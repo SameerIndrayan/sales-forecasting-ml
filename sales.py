@@ -12,4 +12,16 @@ df_features = pd.read_csv('features.csv')
 df_stores = pd.read_csv('stores.csv')
 print("Datasets loaded successfully")
 
+df = pd.merge(df_train, df_stores, on = 'Store', how = 'left')
+df = pd.merge(df, df_features, on = ['Store', 'Date'], how = 'left')
+
+df['Date'] = pd.to_datetime(df['Date'])
+df.set_index('Date', inplace=True)
+df.sort_index(inplace=True)
+
+print("\nFirst 5 rows of merged DataFrame")
+print(df.head())
+
+
+
 
