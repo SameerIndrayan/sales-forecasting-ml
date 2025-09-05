@@ -30,6 +30,15 @@ plt.xlabel('Date')
 plt.ylabel('Total Weekly Sales')
 plt.show()
 
+df['Month'] = df.index.month
+monthly_avg_sales = df.groupby("Month")['Weekly_Sales'].mean()
+plt.figure(figsize=(10,6))
+sns.barplot(x=monthly_avg_sales.index, y = monthly_avg_sales, palette='viridis')
+plt.title('Avg Sales by Month')
+plt.xlabel('Month')
+plt.ylabel('Avg Weekly Sales')
+plt.show()
+
 
 
 
