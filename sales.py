@@ -22,6 +22,14 @@ df.sort_index(inplace=True)
 print("\nFirst 5 rows of merged DataFrame")
 print(df.head())
 
+# plot test
+plt.figure(figsize=(15,7))
+df.groupby(df.index)['Weekly_Sales'].sum().plot
+plt.title('Overall Weekly Sales Trend')
+plt.xlabel('Date')
+plt.ylabel('Total Weekly Sales')
+plt.show()
+
 
 
 
